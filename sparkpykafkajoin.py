@@ -47,7 +47,7 @@ spark.sparkContext.setLogLevel('WARN')
 redisRawStreamDF = spark \
     .readStream \
     .format('kafka') \
-    .option('boot.strap.server', 'localhost:9092') \
+    .option('boot.strap.server', 'kafka:9092') \
     .option('subscribe', 'redis-server') \
     .option('startingOffset', 'earliest') \
     .load()
@@ -119,7 +119,7 @@ emailAndBirthYearStreamingDF = emailAndBirthDayStreamingDF.select('email', split
 # Be sure to specify the option that reads all the events from the topic including those that were published before you started the spark stream
 stediRawStreamDF = spark \
     .format('kafka') \
-    .option('bootstrap.servers', 'localhosst:9092') \
+    .option('bootstrap.servers', 'kafka:9092') \
     .option('subscribe', 'stedi-events') \
     .option('startingOffset', 'earliest') \
     .load()
